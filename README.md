@@ -1,1 +1,1 @@
-battery-check - firmware for a battery voltage check box that gives the voltage in percent on an OLED display. Box uses a Arduino Nano controller.
+battery-check - firmware for a battery voltage tester box. Displays voltage in percentage on an OLED display. The tester uses an Arduino Nano controller.
