@@ -12,7 +12,7 @@
   Software:     Developed using MS Visual Studio Code with the Platformio extention
 
 
-  Date:         17 September 2018
+  Date:         18 September 2018
   Author:       Eddie L Hill
   --------------------------------------------------------------*/
 #include <SPI.h>
