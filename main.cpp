@@ -42,7 +42,6 @@ int testStatus = 0;                   // boolean variable for pass/fail status
 int buttonState = 0;                  // variable for reading the state of the start push button switch
 int x;                                // measurement loop index
 float adres = 0.0049;                 // A/D resolution
-//float fullyCharged = 12.62;           // fully charged battery
 float voltPercentage;                 // the voltage in percentage
 int switchVal = 0;                    // switch value
 bool mmode;                           // mode place holder
@@ -75,7 +74,7 @@ void loop()
   voltage = 0;          // reset voltage variable
 
   // take a number of analog samples and add them up and average
-  firstMeas = analogRead(A3);         // throw away first measurement out per Atmel data sheet
+  firstMeas = analogRead(A3);         // throw first measurement out per Atmel data sheet
   while (sample_count < NUM_SAMPLES) {
     sum += analogRead(A3);
     sample_count++;
