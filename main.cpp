@@ -9,7 +9,7 @@
 
   Hardware:     Arduino Nano
 
-  Software:     Developed using MS Visual Code and Platformio software
+  Software:     Developed using MS Visual Studio Code with the Platformio extention
 
 
   Date:         17 September 2018
