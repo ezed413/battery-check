@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-  Program:      battery_tester
+  Program:      battery_check
 
   Description:  Reads analog value on pin A3 that is connected to a voltage divider to
                 read the voltage of the battery. A fully charged battery is about 12.5 Vdc.
