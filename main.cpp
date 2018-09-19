@@ -27,7 +27,7 @@ Adafruit_SSD1306 display(OLED_RESET);
 
 #define NUM_SAMPLES 10                // number of samples taken of the battery voltage measurement
 #define VoltageDivider1 11.15         // calibration factor for RX unit
-#define VoltageDivider2 10.65         // calibration factor for TX unit
+#define VoltageDivider2 10.40        // calibration factor for TX unit
 #define timeDelay 1000                // delay in ms to when the voltage is measured when load is applied, 4 sec
 #define switchPin 6                   // mode switch input pin
 #define RX 0                          // RX mode
@@ -38,6 +38,7 @@ int sum = 0;                          // sum of samples taken
 int firstMeas = 0;                    // first measurement from the A/D
 unsigned char sample_count = 0;       // current sample number
 float voltage = 0.0;                  // calculated voltage
+float measvolts = 0.0;                // measured voltage
 int testStatus = 0;                   // boolean variable for pass/fail status
 int buttonState = 0;                  // variable for reading the state of the start push button switch
 int x;                                // measurement loop index
@@ -82,13 +83,13 @@ void loop()
   }
 
   // calculate the voltage
-  voltage = ((float)sum / (float)(NUM_SAMPLES) * 5.024) / 1024.0;
+  measvolts = ((float)sum / (float)(NUM_SAMPLES) * 5.024) / 1024.0;
 
   // set the mode according to the mode switch position
-  if (!mmode)
-    voltage = voltage * VoltageDivider1;
+  if (mmode)
+    voltage = measvolts * VoltageDivider1;
   else
-    voltage = voltage * VoltageDivider2;
+    voltage = measvolts * VoltageDivider2;
 
   // calculate the percentage of voltage
   voltPercentage = voltage / 12.5;  // 12.5 vdc is a fully charged battery
