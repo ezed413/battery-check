@@ -26,8 +26,8 @@ Adafruit_SSD1306 display(OLED_RESET);
 
 
 #define NUM_SAMPLES 10                // number of samples taken of the battery voltage measurement
-#define VoltageDivider1 11.10         // calibration factor for RX unit
-#define VoltageDivider2 10.44          // calibration factor for TX unit
+#define VoltageDivider1 11.00         // calibration factor for RX unit
+#define VoltageDivider2 10.34         // calibration factor for TX unit
 #define timeDelay 1000                // delay in ms to when the voltage is measured when load is applied, 4 sec
 #define switchPin 6                   // mode switch input pin
 #define RX 0                          // RX mode
@@ -92,7 +92,7 @@ void loop()
     voltage = measvolts * VoltageDivider2;
 
   // calculate the percentage of voltage
-  voltPercentage = voltage / 12.5;  // 12.5 vdc is a fully charged battery
+  voltPercentage = voltage / 12.6;  // 12.6 vdc is a fully charged battery
   voltPercentage = voltPercentage * 100;
 
   // text display
