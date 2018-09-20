@@ -92,7 +92,7 @@ void loop()
     voltage = measvolts * VoltageDivider2;
 
   // calculate the percentage of voltage
-  voltPercentage = voltage / 12.6;  // 12.6B vdc is a fully charged battery
+  voltPercentage = voltage / 12.5;  // 12.5 vdc is a fully charged battery
   voltPercentage = voltPercentage * 100;
 
   // text display
