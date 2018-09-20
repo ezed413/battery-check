@@ -2,7 +2,7 @@
   Program:      battery_check
 
   Description:  Reads analog value on pin A3 that is connected to a voltage divider to
-                read the voltage of the battery. A fully charged battery is about 12.5 Vdc.
+                read a portion of the voltage of the battery. A fully charged battery is about 12.5 Vdc.
                 Displays the battery charge in percentage on a small 128 x 64 oled display when the battery
                 is connected.
 
@@ -12,7 +12,7 @@
   Software:     Developed using MS Visual Studio Code with the Platformio extention
 
 
-  Date:         18 September 2018
+  Date:         20 September 2018
   Author:       Eddie L Hill
   --------------------------------------------------------------*/
 #include <SPI.h>
@@ -26,8 +26,8 @@ Adafruit_SSD1306 display(OLED_RESET);
 
 
 #define NUM_SAMPLES 10                // number of samples taken of the battery voltage measurement
-#define VoltageDivider1 11.00         // calibration factor for RX unit
-#define VoltageDivider2 10.34         // calibration factor for TX unit
+#define VoltageDivider1 11.00         // calibration factor for RX unit, voltage divider ratio
+#define VoltageDivider2 10.34         // calibration factor for TX unit, adjusted voltage divider ratio
 #define timeDelay 1000                // delay in ms to when the voltage is measured when load is applied, 4 sec
 #define switchPin 6                   // mode switch input pin
 #define RX 0                          // RX mode
@@ -47,6 +47,7 @@ float voltPercentage;                 // the voltage in percentage
 int switchVal = 0;                    // switch value
 bool mmode;                           // mode place holder
 
+/************************************* start of program **********************************************************/
 void setup()
 {
   // initialize serial port.
@@ -59,12 +60,10 @@ void setup()
   display.display();
   pinMode(switchPin, INPUT_PULLUP);           // input for toggle switch input
 }
-/************************************* start of program **********************************************************/
 
+/************************************ start of main loop ********************************************************/
 void loop()
 {
-
-  /************************************ start of main loop ********************************************************/
   // read the mode switch
   switchVal = digitalRead(switchPin);
   if (switchVal)
@@ -83,7 +82,7 @@ void loop()
   }
 
   // calculate the voltage
-  measvolts = ((float)sum / (float)(NUM_SAMPLES) * 5.024) / 1024.0;
+  measvolts = ((float)sum / (float)(NUM_SAMPLES) * 5.001) / 1024.0;
 
   // set the mode according to the mode switch position
   if (mmode)
@@ -109,9 +108,5 @@ void loop()
   // wait here
   while (1);
 }
-
 /***************************************** end of main loop ***************************************************/
-
-
-
 /***************************************** end of program *****************************************************/
